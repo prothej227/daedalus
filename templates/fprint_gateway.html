@@ -1,0 +1,93 @@
+{% extends 'layout.html' %}
+{% block body %}
+<br>
+<br>
+<br>
+
+<div class = "container" id = "content">
+    <div class = "row justify-content-center">
+        <div class="col w-75 col-lg-auto column well">
+            <div class = "jumbotron">
+                <p class="h3">
+                  <img src="/static/img/print.png" style="width:50px;height:50px;">
+                  FLASKPRINT</p>
+                <hr>
+                                <!--- Flash Msg-->
+                                {% with messages = get_flashed_messages(with_categories=true) %}
+                                <!-- Categories: success (green), info (blue), warning (yellow), danger (red) -->
+                                {% if messages %}
+                                  {% for category, message in messages %}
+                                    <div id = "flash" class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                                    <!-- <strong>Title</strong> --> {{ message }}
+                                    </div>
+                                  {% endfor %}
+                                {% endif %}
+                              {% endwith %}
+                              <script>
+                                setTimeout(function() {
+                                    $('#flash').hide("fade");
+                                }, 3000);
+                            </script> 
+                            <!--- Flash Msg-->
+                <form method="post" action="/print/submit">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Customer Name:</label>
+                      <input name="name" type="text" class="form-control" id="name" aria-describedby="textlHelp" placeholder="Enter your name" required>
+                      <small id="textHelp" class="form-text text-muted">Your data/query will expire after 24 hours.</small>
+                    </div>
+                    <div class="form-group">
+                      <label for="token">Access Token:</label>
+                      <input name="token" type="text" class="form-control" id="token" placeholder="Enter your token" required>
+                      <small id="tokenHelp" class="form-text text-muted">Ask for site admin for token request. Access token is a four-character Alpha/Alphanumeric code used for verification.</small>
+                    </div>
+                    <div class="form-group">
+                      <label for="size">Paper Size: </label>
+                      <select name="size" class="form-control" id="size" name="size">
+                        <option value="short">Short / Letter Size (8.5" x 11")</option>
+                        <option value="long">Long (8.5" x 13")</option>
+                        <option value="a4">A4 (8.3" x 11.7")</option>
+                        <option value="freeform">Free Form (For images only)</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="color">Color: </label>
+                      <select name="color" class="form-control" id="color" name="color">
+                        <option value="black&white">Black & White (BW) / Grayscale</option>
+                        <option value="colored">Full Color / RGB</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="quality">Quality: </label>
+                      <select name="quality" class="form-control" id="quality" name="quality">
+                        <option value="standard">Standard Quality</option>
+                        <option value="high">High Quality</option>
+                        <option value="best">Best Quality</option>                          
+                      </select>
+                    </div>
+                    <br>
+                    <fieldset class="form-group">
+                        <div class="row">
+                          <legend class="col-form-label col-sm-2 pt-0">Type:</legend>
+                          <div class="col-sm-10">
+                            <div class="form-check">
+                              <input class="form-check-input" type="radio" name="opttype" id="gridRadios1" value="photo" checked>
+                              <label class="form-check-label" for="opttype1">Image/Photo</label>
+                            </div>
+                            <div class="form-check">
+                              <input class="form-check-input" type="radio" name="opttype" id="gridRadios2" value="document">
+                              <label class="form-check-label" for="opttype2">Document</label>
+                            </div>
+                          </div>
+                        </div>
+                      </fieldset>
+                    <hr>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

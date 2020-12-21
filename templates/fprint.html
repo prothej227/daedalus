@@ -1,0 +1,66 @@
+{% extends 'layout.html' %}
+{% block body %}
+<br>
+<br>
+<br>
+
+<div class = "container" id = "content">
+  <div class = "row justify-content-center">
+    <div class="col w-75 col-lg-auto column well">
+      <div class = "jumbotron">
+        <span class="h2" style="size:12px;">
+          <img src="/static/img/print.png" style="width:50x;height:50px;">
+          FLASKPRINT
+        </span>
+        <br>
+        <span class="small"> |v1| Upload your photo/document you want to print |</span>
+        <hr>
+        <!--- Flash Msg-->
+          {% with messages = get_flashed_messages(with_categories=true) %}
+          <!-- Categories: success (green), info (blue), warning (yellow), danger (red) -->
+          {% if messages %}
+            {% for category, message in messages %}
+              <div id = "flash" class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+              <!-- <strong>Title</strong> --> {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+        <script>
+          setTimeout(function() {
+              $('#flash').hide("fade");
+          }, 3000);
+      </script> 
+      <!--- Flash Msg-->
+          <h3 class="lead">Print Job Data</h3>
+          <small>Name: <strong style="text-transform: uppercase;">{{ name }}</strong>
+            <br>Access Token: <strong style="text-transform: uppercase;">{{token}}</strong>
+            <br>Type: <strong style="text-transform: uppercase;">{{opttype}}</strong>
+            <br>Paper Size: <strong style="text-transform: uppercase;">{{size}}</strong>
+            <br>Color: <strong style="text-transform: uppercase;">{{ color }}</strong>
+            <br>Quality: <strong style="text-transform: uppercase;">{{ quality }}</strong>
+          </small>
+        <hr>
+          <form type="file"  method=POST enctype=multipart/form-data>
+            {% if opttype == "photo" %}
+            <input type=file name=photo>
+            {% endif %}
+            {% if opttype == "document" %}
+            <input type=file name=doc>
+            {% endif %}
+            <hr>
+            {% if opttype == "photo" %}
+              <input formaction="{{ url_for('upload', edit = "true", name = name, token = token, size = size, opttype = opttype, color= color, quality = quality)}}" class = "btn btn-success btn-sm" value = "Edit Image" type = submit style="margin-top: 5px;">
+              <input formaction="{{ url_for('upload', edit = "false", name = name, token =  token, size =  size, opttype = opttype, color= color, quality = quality)}}" class = "btn btn-danger btn-sm" value = "Submit/Print" type = submit style="margin-top: 5px;">
+            {% endif %}
+            {% if opttype == "document" %}
+            <input formaction="{{ url_for('upload', edit = "false", name = name, token = token, size = size, opttype = opttype, color= color, quality = quality)}}" class = "btn btn-danger btn-sm" value = "Submit/Print" type = submit style="margin-top: 5px;">
+          {% endif %}
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}

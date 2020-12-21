@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block body %}
+<br>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="jumbotron">
+                <h1>{{ title }} ({{ year }})</h1>
+                <hr class = "my-4">
+                    <i><blockquote>{{body}}</blockquote></i>
+                    <hr>
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <script type=”text/javascript” src="/static/afterglow.min.js"></script>
+                        <video class = "afterglow" id = "myVideo" width="320" height="240" controls>
+                            <source src="{{ link }}" type="video/mp4"/>
+                        </video>
+                </div>    
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

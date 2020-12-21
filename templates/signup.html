@@ -1,0 +1,46 @@
+{% extends 'layout.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block body %}
+
+<br>
+<br>
+<br>
+<div class = "container center">
+  <div class="panel panel-primary">
+    <div class="panel-body">
+        <div class="row justify-content-md-center clearfix">
+          <div class = "col-md-auto column well">
+            <div class = "jumbotron">
+                <form class="form-signin" method="POST" action="/signup">
+                  <h2 class="form-signin-heading">SIGN UP</h2>
+                  <p class="h6"><em>Activate all the website's features by signing up to FlaskApp.</em></p>
+                  <hr>
+                  {% with messages = get_flashed_messages(with_categories=true) %}
+                  <!-- Categories: success (green), info (blue), warning (yellow), danger (red) -->
+                  {% if messages %}
+                    {% for category, message in messages %}
+                      <div id = "flash" class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                      <!-- <strong>Title</strong> --> {{ message }}
+                      </div>
+                      {% endfor %}
+                    {% endif %}
+                  {% endwith %}
+                  {{ form.hidden_tag() }}
+                  {{ wtf.form_field(form.username) }}
+                  {{ wtf.form_field(form.email) }}
+                  {{ wtf.form_field(form.password) }}
+                  <hr class = "my-4">
+                  {{ wtf.form_field(form.about) }}
+                  <hr class = "my-4">
+                  <button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
+                </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+{% endblock %}
+

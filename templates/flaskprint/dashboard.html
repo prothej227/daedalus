@@ -1,0 +1,90 @@
+{% extends "bootstrap/base.html" %}
+
+{% block title %}
+FlaskPrint - Dashboard
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" href="/static/flaskprint/css/dashboard.css">
+<link rel="icon" href="/static/img/admin.png" type="image/gif" sizes="16x16">
+{% endblock %}
+
+{% block content %}
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">FlaskPrint | Dashboard</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/print/dashboard">Dashboard</a></li>
+            <li><a href="/print/dashboard/tokens">Token List</a></li>  
+            <li><a>Admin: {{ current_user.username }}</a></li>
+            <li><a href="/logout">Log Out</a></li>
+          </ul>
+          <form class="navbar-form navbar-right">
+            <input type="text" class="form-control" placeholder="Search...">
+          </form>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li class="active"><a href="#">PrintJobs <span class="sr-only">(current)</span></a></li>
+            <li><a href="#">Analytics</a></li>
+            <li><a href="#">Export</a></li>
+          </ul>
+          
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <div class="row placeholders">
+          </div>
+
+          <h2 class="diplay-4">FlaskPrint Job Queue</h2>
+          <small style="margin-top: 0px;">//This dashboard summarizes the current job queue for FlaskPrint</small>
+          <hr>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Customer Name</th>
+                  <th>Access Token</th>
+                  <th>Filename</th>                  
+                  <th>Type</th>
+                  <th>Paper Size</th>
+                  <th>Color</th>
+                  <th>Quality</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for (i) in range(length) %}
+                <tr>
+                  <td>{{ names[i+1] }}</td>
+                  <td>{{ tokens[i+1] }}</td>
+                  <td>{{ filename[i+1] }}</td>                 
+                  <td style="text-transform: capitalize;">{{ types[i+1] }}</td>
+                  <td style="text-transform: capitalize;">{{ sizes[i+1] }}</td>
+                  <td style="text-transform: capitalize;">{{ color[i+1] }}</td>
+                  <td style="text-transform: capitalize;">{{ quality[i+1] }}</td>                  
+                  <td>{{ dates[i+1] }}</td>
+                </tr>
+                {% endfor %}
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}

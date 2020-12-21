@@ -1,0 +1,92 @@
+{% extends 'layout.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block body %}
+<br>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="jumbotron">
+                <h1 class = "my-2">FlaskTV</h1>
+				    <span class = "lead">This directory provides a small database of movies and series. All published content were from the flask's community suggestions.</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+      <style>
+         img {
+            max-width: 100%;
+            height: auto;
+            width: auto\9; /* ie8 */
+        }
+      </style>
+      
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="jumbotron">
+                <div class = "page-heading">
+                    <h1>Movies</h1>
+                </div>
+                <hr>
+                {% for movie in movie_list %}
+                <div class="media">
+                    <div class = "col">
+                    <img src="{{ movie.poster }}" class="mr-3 img-thumbnail" style="vertical-align:middle">
+                    <div class = "media-body">
+                      <h4 style = "margin-top:15px;">{{ movie.title }} ({{movie.year}})</h4>
+                      <p align = "left" style = "margin-top: 8px; line-height: 1em;margin-bottom: 0;font-weight:light;color:rgb(67, 134, 0)", class = "h6">Genre: {{movie.genre}}</p>
+                      <div class="panel panel-default" style="margin-top:1px;">
+                        <div class="panel-body">
+                            <p align = "justify" class = "my-4">{{movie.body}}</p>
+                        </div>
+                        <form class = "in-line">
+                            <button type="submit" class="btn btn-success" formaction = "/tv/movie/watch_name={{movie.title}}/" id="watch">Watch Now</button>
+                            <button  formmethod = "get" type="submit" class="btn btn-danger" formaction = "get/movie/FlaskTV - {{movie.title}}"id="download">Download</button>
+                        </form>
+                    </div>
+                    </div>
+                    </div>
+                  </div>
+                  <hr>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="jumbotron">
+                    <div class = "page-heading">
+                        <h1>Series</h1>
+                    </div>
+                    <hr>
+                    {% for ele in series_list %}
+                    <div class="media">
+                        <div class = "col">
+                        <img src="{{ ele.poster }}" class="mr-3 img-thumbnail" style="vertical-align:middle">
+                        <div class = "media-body">
+                          <h4 style = "margin-top:15px;">{{ ele.title }} ({{ele.year}})</h4>
+                          <p align = "left" style = "margin-top: 8px; line-height: 1em;margin-bottom: 0;font-weight:light;color:rgb(67, 134, 0)", class = "h6">Genre: {{ele.genre}}</p>
+                          <p align = "left" style = "margin-top: 8px; line-height: 1em;margin-bottom: 0;font-weight:light;color:rgb(172, 30, 30)", class = "h6">Episodes: {{ele.ep}}</p>
+                          <div class="panel panel-default" style="margin-top:1px;">
+                            <div class="panel-body">
+                                <p align = "justify" class = "my-4">{{ele.body}}</p>
+                            </div>
+                            <form class = "in-line">
+                                <button type="submit" class="btn btn-success" formaction = "/tv/series/ep_viewer/{{ele.title}}" id="watch">Watch Now</button>
+                            </form>
+                        </div>
+                        </div>
+                        </div>
+                      </div>
+                      <hr>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+</div>
+
+{% endblock %}

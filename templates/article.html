@@ -1,0 +1,21 @@
+
+{% extends 'layout.html' %}
+
+{% block body %}
+<br>
+
+    <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <b><h1 class="post-title">{{ post.title }}</h1></b>
+        <hr>
+        <i class="lead" style='font-size:16px;''>Topic: {{ post.subtitle }}</i>
+        <br>
+        <blockquote><span class = "blockquote" style = "font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;font-size:18px;">Posted by
+            <a href="/user/{{ post.author }}">{{ post.author }}</a>
+            on {{ post.date_posted.strftime('%B %d, %Y') }}</span></blockquote>
+        <hr class="my-4">
+        <article class = "w3-container">
+        <p class = "text-justify list-inline" style = "font-family:Verdana, Geneva, Tahoma, sans-serif;">{{ post.content|safe }}</p></article>
+      </div>
+
+{% endblock %}

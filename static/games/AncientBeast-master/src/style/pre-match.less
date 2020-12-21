@@ -1,0 +1,368 @@
+#gameTitle {
+	display: block;
+	margin: auto;
+	width: 555px;
+
+	div {
+		height: 125px;
+		background-image: url('~assets/interface/AncientBeast.png');
+		background-repeat: no-repeat;
+		margin-top: 20px;
+	}
+
+	&:hover {
+		filter: brightness(120%);
+	}
+}
+
+#websiteButton {
+	display: none;
+}
+
+#contribute {
+	display: none;
+}
+
+#matchMaking {
+	width: 100%;
+	height: 100%;
+	min-height: 510px;
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 98;
+	text-align: center;
+	background: black url('~assets/interface/Reaper.jpg') no-repeat center top;
+	background-size: cover;
+	color: white;
+
+	#loader {
+		width: 200px;
+		height: 50px;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		margin-left: -100px;
+		margin-top: -2px;
+		line-height: 50px;
+		font-size: 40px;
+		display: none;
+
+		#barLoader {
+			position: relative;
+			margin-left: -60px;
+			background-image: url('~assets/interface/loadingEmpty.png');
+			background-repeat: no-repeat;
+			height: 54px;
+			width: 355px;
+
+			.progress {
+				display: block;
+				height: 100vh;
+				width: 0;
+				background-image: url('~assets/interface/loadingFull.png');
+				background-repeat: no-repeat;
+			}
+		}
+	}
+}
+
+body {
+	background: black url('~assets/interface/skulls.jpg') repeat;
+	margin: 0;
+	overflow: hidden;
+	padding: 0;
+	font-family: 'Play', sans-serif;
+}
+
+* {
+	user-select: none;
+}
+
+@keyframes fading {
+	0% {
+		opacity: 1;
+	}
+
+	50% {
+		opacity: 0.1;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+#gameSetupContainer {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	height: 100vh;
+
+	#gameSetup {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+
+		.setupFrame {
+			border: 40px solid transparent;
+			border-image: url('~assets/interface/div.png') 40 fill stretch;
+			background: none;
+			position: relative;
+			overflow: visible;
+			margin: 0 0 10px;
+			padding: 0;
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			width: 495px;
+
+			.gameOption {
+				background: #191919cc;
+				border: #7a7a7a 1px solid;
+				border-radius: 7px;
+				margin: 2px;
+				padding: 5px;
+				display: flex;
+				flex-direction: column;
+				flex-grow: 1;
+				justify-content: center;
+
+				h2 {
+					margin: 5px;
+					font-size: 1em;
+				}
+
+				.typeRadio {
+					white-space: nowrap;
+					display: flex;
+					flex-grow: 1;
+
+					input[type='radio'] {
+						border: 0;
+						clip: rect(0 0 0 0);
+						height: 1px;
+						margin: -1px;
+						overflow: hidden;
+						padding: 0;
+						position: absolute;
+						width: 1px;
+
+						&:checked + label {
+							border: 1px solid #c80909;
+							background: #292929;
+							font-weight: bold;
+							color: #f55;
+							z-index: 99;
+						}
+
+						&:focus + label {
+							box-shadow: 0 0 3px 1px rgb(214, 98, 94);
+						}
+					}
+
+					label {
+						flex-grow: 1;
+						border: 1px solid #333333;
+						background: #333333;
+						font-weight: bold;
+						color: #ffffff;
+						float: left;
+						margin-left: 0;
+						margin-right: 0;
+						line-height: 26px;
+						cursor: pointer;
+
+						&:hover {
+							border: 1px solid #222222;
+							background: #a32d00;
+							font-weight: bold;
+							color: #ffffff;
+						}
+
+						&:active {
+							border: 1px solid #c80909;
+							background: #292929;
+							font-weight: bold;
+							color: #f55;
+						}
+
+						&:first-of-type {
+							border-top-left-radius: 4px;
+							border-bottom-left-radius: 4px;
+						}
+
+						&:last-of-type {
+							border-top-right-radius: 4px;
+							border-bottom-right-radius: 4px;
+						}
+					}
+				}
+			}
+		}
+
+		#startButtonWrapper {
+			font-size: 1.5em;
+			text-shadow: 2px 2px black;
+
+			.blink {
+				padding: 0;
+				font-weight: bold;
+				animation: fading 2.5s infinite;
+			}
+
+			#startButton {
+				background: transparent;
+				background-image: url('~assets/interface/small_button.png');
+				background-size: 190px;
+				border: 0;
+				width: 190px;
+				height: 74px;
+				color: #ffffff;
+				font-size: 0.9em;
+				font-weight: bold;
+				cursor: pointer;
+
+				&:hover {
+					filter: brightness(135%);
+				}
+
+				&:focus {
+					outline: 0;
+					color: white;
+				}
+			}
+		}
+	}
+}
+
+#start {
+	display: none;
+}
+
+#version {
+	display: block;
+	width: 100px;
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	z-index: 100;
+
+	div {
+		height: 100px;
+		background: url('~assets/interface/AB.png') no-repeat;
+		background-size: cover;
+	}
+
+	&:hover {
+		filter: brightness(120%);
+	}
+}
+
+a {
+	color: white;
+	text-shadow: 2px 2px black;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+@media (max-height: 555px) {
+	#matchMaking {
+		background: black url('~assets/interface/skulls.jpg') repeat;
+	}
+
+	#gameTitle {
+		display: none;
+	}
+
+	#websiteButton {
+		display: block;
+		width: 100px;
+		position: fixed;
+		padding: none;
+		left: 0;
+
+		div {
+			display: block;
+			background-image: url('~assets/interface/AB.png');
+			background-repeat: no-repeat;
+			background-size: cover;
+			height: 100px;
+		}
+
+		&:hover {
+			filter: brightness(120%);
+		}
+
+		span {
+			text-shadow: 0.1em 0.1em 0.1em #000, 0 0 0.7em red;
+		}
+	}
+
+	#contribute {
+		display: block;
+		position: fixed;
+		bottom: 0;
+		z-index: 100;
+
+		div {
+			background: url('~assets/interface/Swampler.gif');
+			background-repeat: no-repeat;
+			width: 144px;
+			height: 195px;
+		}
+
+		&:hover {
+			filter: brightness(120%);
+		}
+	}
+
+	.setupFrame div {
+		border: none;
+	}
+
+	#startButtonWrapper {
+		display: none;
+	}
+
+	#start {
+		display: block;
+		width: 100px;
+		position: fixed;
+		right: 0;
+		top: 50%;
+		transform: translateY(-50%);
+		z-index: 100;
+
+		button {
+			display: block;
+			width: 100px;
+			height: 100px;
+			border: none;
+			cursor: pointer;
+			background-color: rgba(0, 0, 0, 0.55);
+			background-image: url('~assets/interface/frame.png'), url('~assets/icons/start.svg');
+			background-repeat: no-repeat;
+			background-size: cover;
+		}
+
+		span {
+			animation: fading 2.5s infinite;
+		}
+	}
+
+	#version div {
+		background-color: rgba(0, 0, 0, 0.55);
+		background-image: url('~assets/interface/frame.png'), url('~assets/icons/version.svg');
+		background-size: cover;
+		background-repeat: no-repeat;
+	}
+}
+
+@media (max-height: 445px) {
+	.setupFrame {
+		border: none !important;
+	}
+}

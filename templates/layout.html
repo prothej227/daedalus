@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset = 'utf-8' >
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>FlaskAPP - {{page_title}}</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename="css/bootstrap.min.css")}}">
+        <link rel="stylesheet" href="{{ url_for('static', filename="css/navbar")}}">
+        <link rel="stylesheet" href="{{ url_for('static', filename="fa/css/fontawesome.css")}}">
+        <link rel="stylesheet" href="{{ url_for('static', filename="fa/css/fontawesome.min.css")}}">
+        <link rel="stylesheet" href="{{ url_for('static', filename="css/jquery.dataTables.min.css")}}">
+        <link rel="icon" href= "/flask.png" type="image/x-icon"/>
+    </head>
+    <body>
+        {% include '_navbar.html' %}
+        {% block body %} {% endblock %}
+
+        
+        <script src="{{ url_for('static', filename="js/jquery-3.2.1.slim.min.js")}} "></script>          
+        <script src="{{ url_for('static', filename="js/jquery-3.4.1.slim.min.js")}}"></script>
+        <script src="{{ url_for('static', filename="js/jquery-3.5.1.min.js")}}"></script>
+        <script src="{{ url_for('static', filename="js/popper.min.js")}} "></script>
+        <script src="{{ url_for('static', filename="js/bootstrap.min.js")}} "></script>
+        <link rel="stylesheet" href="{{ url_for('static', filename="fa/js/all.js")}}">
+        <script src="{{ url_for('static', filename="js/jquery.dataTables.min.js")}} "></script>
+        <script src="{{ url_for('static', filename="js/dataTables.rowReorder.min.js")}} "></script>
+        <script src="{{ url_for('static', filename="js/dataTables.responsive.min.js")}} "></script>
+
+        <!-- Footer -->
+        <footer class="page-footer font-small dark">
+            <div class="footer-copyright text-center py-3">© 2020 Copyright:
+                <a href="/"> MyFlaskAPP | Journel Cabrillos</a>
+            </div>
+            <!-- Copyright -->
+        </footer>
+        <!-- Footer -->
+    </body>
+</html>

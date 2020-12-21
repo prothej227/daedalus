@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+{% block body %}
+    <div class = "jumbotron text-center">
+            <h1>Welcome to FlaskAPP, {{ name }}! </h1>
+        <p class="lead">FlaskAPP is a Python-based Web Application developed by Journel Cabrilllos</p>
+
+        {% if current_user.username != NONE %}
+        <hr>
+            <h6><p class="lead">YOUR SESSION IS NOW <strong><a style = "color:rgb(64, 252, 7)">ACTIVE</a></strong></p></h3>
+        {% else %}
+            <hr>
+            <p class="lead">In order to use FlaskAPP, please <a href = '/login'>login </a>to use the site's features. </p>
+        {% endif %}
+        <h6><p class="lead">CURRENT SERVER TIME: <strong><a style = "color:rgb(64, 252, 7)" class = "h4">{{ info_date }}</a></strong></p></h3>
+    </div>
+{% endblock %}

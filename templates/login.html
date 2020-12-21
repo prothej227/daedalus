@@ -1,0 +1,49 @@
+{% extends 'layout.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block body %}
+
+<br>
+<br>
+<br>
+
+<div class = "container center">
+  <div class="panel panel-primary">
+    <div class="panel-body">
+      <div class="row justify-content-md-center clearfix">
+        <div class = "col w-50 col-md-auto column well" >
+          <div class = "jumbotron">
+      <form class="form-signin" method = "POST" action = "/login">
+        <h2 class="form-signin-heading">SIGN IN</h2>
+        <p class="h6"><em>Sign in to FlaskApp to activate other features.</em></p>
+        <hr>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        <!-- Categories: success (green), info (blue), warning (yellow), danger (red) -->
+        {% if messages %}
+          {% for category, message in messages %}
+            <div id = "flash" class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+            <!-- <strong>Title</strong> --> {{ message }}
+            </div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+      <script> 
+        setTimeout(function() {
+            $('#flash').hide("fade");
+        }, 3000);
+    </script>
+        {{ form.hidden_tag() }}
+        {{ wtf.form_field(form.username) }}
+        {{ wtf.form_field(form.password) }}
+        {{ wtf.form_field(form.remember) }}
+        <button id = "mySubmit"class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      </form>
+      </div>
+    </div>
+    </div>
+    </div>
+    </div>
+  </div>
+
+
+{% endblock %}
+

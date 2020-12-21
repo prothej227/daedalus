@@ -1,0 +1,19 @@
+{
+	"plugins": ["prettier"],
+	"extends": ["prettier", "plugin:prettier/recommended"],
+	"rules": {
+		"prettier/prettier": "error",
+		"no-undef": "error"
+	},
+	"parserOptions": {
+		"ecmaVersion": 2017,
+		"sourceType": "module"
+	},
+	"env": {
+		"browser": true,
+		"es6": true
+	},
+	"globals": {
+		"Phaser": true
+	}
+}

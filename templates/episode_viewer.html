@@ -1,0 +1,31 @@
+{% extends 'layout.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block body %}
+<br>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="jumbotron">
+                <h1 class = "my-2">{{ title }}</h1>
+                    <span class = "lead">{{ body }}</span>
+                <hr>
+            </div>
+        </div>
+        <div class = "col-md-12">
+			<div class="jumbotron">
+                <ul class="list-group list-group-flush">
+                    <li class = "list-group-item list-group-item-action list-group-item-success">EPISODES</li>
+                    {% for i in range(ep) %}
+                    <li class="list-group-item list-group-item-action" >
+                        <a href="/tv/series/watch_name={{ title }}/ep_num={{ i+1 }}/">Episode {{ i + 1 }}</a>
+                    </li>
+                {% endfor %}</ul>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

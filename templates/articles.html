@@ -1,0 +1,60 @@
+{% extends 'layout.html' %}
+{% block body %}
+<style>
+    div.container {
+        width: 80%;
+    }
+</style>
+<link rel="stylesheet" href="{{ url_for('static', filename="css/rowReorder.dataTables.min.css")}}">
+<link rel="stylesheet" href="{{ url_for('static', filename="css/responsive.dataTables.min.css")}}">
+<br>
+    <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4">Articles</h1>
+        <p class="lead">This directory outlines all the published Articles/Blogs in FlaskAPP</p>
+        <hr class="my-4">
+        <script src="{{ url_for('static', filename="js/dataTables.rowReorder.min.js")}} "></script>
+        <script src="{{ url_for('static', filename="js/dataTables.responsive.min.js")}} "></script>
+        <script src="{{ url_for('static', filename="js/jquery-3.5.1.js")}} "></script>
+        <script>
+            $(document).ready(function() {
+                var table = $('#table1').DataTable( {
+                    rowReorder: {
+                        selector: 'td:nth-child(2)'
+                    },                    
+                    aaSorting: [[0, 'desc']]
+                 });   
+                 responsive: true      
+            });
+        </script>
+        <script>
+            $('#table1').dataTable({
+                aaSorting: [[0, 'desc']]
+              });
+        </script>
+        <style>
+            table.dataTable thead {background-color:#343A40}
+        </style>
+        <table id = "table1" class = 'display dataTable table-hover compact non-wrap' data-page-length="20" style = "width:100%">
+            <thead class='thead-dark'>
+            <tr>
+                <th style = "color: white;">Blog ID</th>
+                <th style = "color: white;">Title</th>
+                <th style = "color: white;">Author</th>
+                <th style = "color: white;">Topics</th>
+                <th style = "color: white;">Date Published</th>
+            </tr>
+            </thead>
+            <tr>
+                {% for post in posts %}
+                <td><center>{{ post.blog_id }}</center></td>
+                <td><a href="post/article/{{ post.blog_id }}">{{ post.title }}</a></td>
+                <td><a href="user/{{ post.author }}">{{ post.author }}</a></td>
+                <td>{{ post.subtitle }}</td>
+                <td>{{ post.date_posted.strftime('%b %d, %Y') }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+      </div>
+    </div>
+{% endblock %}

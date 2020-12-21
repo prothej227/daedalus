@@ -1,0 +1,20 @@
+{% extends 'layout.html' %}
+{% block body %}
+<br>
+<div class="container h-100">
+    <div class="row align-items-center h-100">
+                <div class = "jumbotron text-left">
+                    <strong><h2 class="h2">SERIES - MONEY HEIST</h2></strong>
+                    <hr class="my-4">
+                    <p class="lead">Description: A group of robbers plan to rob the Spain's National Factory of Currency and Stamps, in order to gain 2400 euros. They take 67 hostages and remain in the space for 11 days.</p>
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <script type=”text/javascript” src="/static/afterglow.min.js"></script>
+                        <video class = "afterglow" id = "myVideo" width="320" height="240" controls>
+                            <source src="/static/media/videos/series/money_heist/ep_1.mp4" type="video/mp4"/>
+                        </video>
+                </div>
+        </div>
+    </div>
+  </div>
+
+{% endblock %}

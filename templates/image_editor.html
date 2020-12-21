@@ -1,0 +1,8 @@
+{% extends 'layout.html' %}
+{% block body %}
+<script src="/static/js/filerobot-image-editor.min.js"/></script>
+<script>
+  const ImageEditor = new FilerobotImageEditor();
+  ImageEditor.open("{{ path }}");
+</script>
+{% endblock %}
